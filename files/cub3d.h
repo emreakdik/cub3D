@@ -6,7 +6,7 @@
 /*   By: emre <emre@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 15:00:09 by cclaude           #+#    #+#             */
-/*   Updated: 2024/01/01 00:40:46 by emre             ###   ########.fr       */
+/*   Updated: 2024/01/04 12:33:54 by emre             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,9 @@ typedef struct s_all
 
 int					ft_update(t_all *s);
 int					ft_key_release(int key, void *arg);
-void				ft_init(char *cub, int bmp);
-void				ft_declare(t_all s, char *cub, int bmp);
-int					ft_cubed(t_all s, char *cub, int bmp);
+void				ft_init(char *cub);
+void				ft_declare(t_all s, char *cub);
+int					ft_cubed(t_all s, char *cub);
 void				ft_draw(t_all *s);
 
 int					ft_parse(t_all *s, char *cub);
@@ -207,12 +207,6 @@ void				ft_sorder(t_all *s);
 void				ft_slocate(t_all *s, double dirx, double diry, double dist);
 void				ft_sdraw(t_all *s, int loc, double dist);
 unsigned int		ft_spixel(t_all *s, int index, unsigned int col);
-
-int					ft_bitmap(t_all *s);
-void				ft_bdraw(t_all *s);
-void				ft_bfile(t_all *s, int fd);
-void				ft_binfo(t_all *s, int fd);
-void				ft_bdata(t_all *s, int fd);
 
 char				*error(char *stock);
 int					newline_check(char *stock, int read_size);

@@ -2,7 +2,7 @@ NAME = cub3D
 
 CC = clang
 
-CFLAGS = -O3 -Wall -Wextra -Werror
+CFLAGS = -O3 -Wall -Wextra -Werror -g
 
 MLX = mlxopengl
 
@@ -21,7 +21,6 @@ SRC = cub3d \
 	screen \
 	screen_col \
 	sprite \
-	bitmap \
 	tools \
 	key_utils \
 	gnl \
