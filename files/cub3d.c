@@ -43,6 +43,7 @@ int	initialize_and_run_game(t_all s)
 	if (parse_cub_file(&s, s.map.file) == -1)
 		return (close_application(&s, 0));
 	s.win.ptr = mlx_new_window(s.mlx.ptr, s.win.x, s.win.y, "cub3D");
+	create_trig_value_table(&s);
 	draw_game_frame(&s);
 	mlx_hook(s.win.ptr, 2, 0, handle_key_press, &s);
 	mlx_hook(s.win.ptr, 3, 0, handle_key_release, &s);

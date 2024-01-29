@@ -6,7 +6,7 @@
 /*   By: emre <emre@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 15:00:09 by cclaude           #+#    #+#             */
-/*   Updated: 2024/01/28 22:02:28 by emre             ###   ########.fr       */
+/*   Updated: 2024/01/29 16:49:55 by emre             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ typedef struct s_tex
 	unsigned int	*s;
 	unsigned int	*e;
 	unsigned int	*w;
-	unsigned int	*i;
 	unsigned int	c;
 	unsigned int	f;
 }					t_tex;
@@ -133,6 +132,12 @@ typedef struct s_stk
 	double			d;
 }					t_stk;
 
+typedef struct s_trg 
+{
+	double sin[7200];
+	double cos[7200];
+} t_trg;
+
 typedef struct s_all
 {
 	t_mlx			mlx;
@@ -146,6 +151,7 @@ typedef struct s_all
 	t_ray			ray;
 	t_hit			hit;
 	t_stk			*stk;
+	t_trg			*trg;
 	int				key_w;
 	int				key_a;
 	int				key_s;
@@ -202,6 +208,7 @@ void				determine_ray_direction(t_all *s);
 void				perform_vertical_ray_cast(t_all *s);
 void				perform_horizontal_ray_cast(t_all *s);
 void				render_frame(t_all *s);
+void	create_trig_value_table(t_all *s);
 
 /* Hook */
 int					clean_up_and_exit(t_all *s);

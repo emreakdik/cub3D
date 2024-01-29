@@ -67,3 +67,4 @@ void	store_ray_hit_info(t_all *s)
 	s->stk[s->ray.i].y = s->ray.y;
 	s->stk[s->ray.i].d = s->hit.d;
 }
+

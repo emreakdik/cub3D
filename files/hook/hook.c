@@ -12,7 +12,6 @@ int	clean_up_and_exit(t_all *s)
 	free(s->tex.s);
 	free(s->tex.e);
 	free(s->tex.w);
-	free(s->tex.i);
 	mlx_destroy_window(s->mlx.ptr, s->win.ptr);
 	free(s->mlx.ptr);
 	exit(0);
@@ -50,7 +49,6 @@ int	close_application(t_all *s, int win)
 	free(s->tex.s);
 	free(s->tex.e);
 	free(s->tex.w);
-	free(s->tex.i);
 	if (win == 1)
 		mlx_destroy_window(s->mlx.ptr, s->win.ptr);
 	free(s->mlx.ptr);
@@ -75,6 +73,7 @@ int	handle_key_release(int key, void *arg)
 		s->key_left = 0;
 	else if (key == RIGHT)
 		s->key_right = 0;
+	system("leaks cub3D");
 	draw_game_frame(arg);
 	return (1);
 }

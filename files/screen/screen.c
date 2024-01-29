@@ -1,4 +1,6 @@
 #include "../includes/cub3d.h"
+#define TABLE_SIZE 7200
+#define DEG_TO_INDEX(deg) ((int)((deg) * (TABLE_SIZE / 360.0)))
 
 void	calculate_ray_vector(t_all *s)
 {
@@ -6,9 +8,14 @@ void	calculate_ray_vector(t_all *s)
 	double	dist;
 
 	angle = ((double)s->ray.i - (s->win.x / 2)) * 33 / (s->win.x / 2);
-	angle = angle * M_PI / 180;
-	s->ray.x = s->dir.x * cos(angle) - s->dir.y * sin(angle);
-	s->ray.y = s->dir.y * cos(angle) + s->dir.x * sin(angle);
+	angle = fmod(angle, 360); // Açıyı 0 ile 360 derece arasında sınırla
+	if (angle < 0)
+		angle += 360; // Negatif açıları pozitife çevir
+	int index = DEG_TO_INDEX(angle); // Dereceyi indekse çevir
+	if (index < 0 || index >= TABLE_SIZE)
+		index = (index + TABLE_SIZE) % TABLE_SIZE;
+	s->ray.x = s->dir.x * s->trg->cos[index] - s->dir.y * s->trg->sin[index];
+	s->ray.y = s->dir.y * s->trg->cos[index] + s->dir.x * s->trg->sin[index];
 	dist = hypot(s->ray.x, s->ray.y);
 	s->ray.x /= dist;
 	s->ray.y /= dist;

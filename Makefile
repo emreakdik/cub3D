@@ -20,6 +20,7 @@ SRC = cub3d \
 		parse/map_positioning \
 		screen/screen_col \
 		screen/screen \
+		screen/create_table \
 		hook/key \
 		hook/hook \
 	libft/ft_atoi \
