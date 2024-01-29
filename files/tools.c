@@ -1,37 +1,39 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: emre <emre@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/30 18:01:54 by cclaude           #+#    #+#             */
-/*   Updated: 2023/12/31 23:56:48 by emre             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "includes/cub3d.h"
 
-#include "cub3d.h"
-
-int	ft_spaceskip(char *line, int *i)
+int	ft_tablen(char **tab) // ismi degisebilir
 {
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		i++;
+	return (i);
+}
+
+int	new_line_counter(char *line)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (line[i])
+	{
+		if (line[i] == '\n')
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+int	skip_whitespace_characters(char *line, int *i)
+{
+	if (*i == -1)
+		*i = 0;
 	while ((line[*i] == ' ' || line[*i] == '\t' || line[*i] == '\n')
 		|| (line[*i] == '\r' || line[*i] == '\v' || line[*i] == '\f'))
 		(*i)++;
 	return (1);
-}
-
-int	ft_atoi(char *line, int *i)
-{
-	int	num;
-
-	num = 0;
-	ft_spaceskip(line, i);
-	while (line[*i] >= '0' && line[*i] <= '9')
-	{
-		num = num * 10 + (line[*i] - 48);
-		(*i)++;
-	}
-	return (num);
 }
 
 void	ft_strerror2(int err)
@@ -54,6 +56,8 @@ void	ft_strerror2(int err)
 		write(2, "Error : Multiple starting positions\n", 36);
 	else if (err == -19)
 		write(2, "Error : Map isn't surrounded by walls\n", 38);
+	else if (err == -20)
+		write(2, "Error : File Extension Error\n", 29);
 }
 
 int	ft_strerror(int err)
@@ -82,3 +86,4 @@ int	ft_strerror(int err)
 		ft_strerror2(err);
 	return (-1);
 }
+

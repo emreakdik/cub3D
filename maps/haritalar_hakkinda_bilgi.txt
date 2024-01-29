@@ -1,0 +1,7 @@
+Haritalarin ne olursa olsun etrafi 1 ile dolu olmalidir
+Haritanin icinde ne kadar bosluk olursa olsun etrafinin 1'ile kapli olmasi gerekir (bunu sqr.cub haritasinda gorebilirsin)
+Harita bos satirla ayrilmamalidir ama biz de 22 Ocak itibari ile bu konunun kontrolu yoktur
+
+sqr.cub ile yamuk ama uygun harita kontrolune bakabilirsin
+sqr_bosluk_hata.cub ile haritanin ortasindaki boslugun etrafi 1 ile kapli olmadigi icin hata aldigini gorebilirsin
+wall_hata ile yamuk ve etrafinda duvar olmayan bir haritanin hata verdigini gorebilirsin

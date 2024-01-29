@@ -13,39 +13,32 @@ HEADER = cub3d.h
 B_HEADER = cub3d_bonus.h
 
 SRC = cub3d \
-	parse \
-	parse_map \
-	parse_tools \
-	parse_check \
-	key \
-	screen \
-	screen_col \
-	sprite \
-	tools \
-	key_utils \
-	gnl \
+      tools \
+		parse/file_management \
+		parse/file_separate \
+		parse/map_checks \
+		parse/map_positioning \
+		screen/screen_col \
+		screen/screen \
+		hook/key \
+		hook/hook \
+	libft/ft_atoi \
+	libft/ft_memset \
+	libft/ft_strlen \
+	libft/ft_strspn \
+	libft/ft_split \
+	libft/ft_strjoin \
+	libft/ft_strchr \
+	libft/ft_memcpy \
+	libft/ft_strdup \
+
+
 
 FIL = $(addsuffix .c, $(addprefix files/, $(SRC)))
 
 OBJ = $(FIL:.c=.o)
 
 BIN = $(addsuffix .o, $(SRC))
-
-B_HEADER = cub3d_bonus.h
-
-B_SRC = screen_row \
-	sprite_draw \
-	key_more \
-	weapons \
-	enemy \
-	door \
-	hud \
-
-B_FIL = $(addsuffix _bonus.c, $(addprefix bonus/, $(SRC) $(B_SRC)))
-
-B_OBJ = $(B_FIL:.c=.o)
-
-B_BIN = $(addsuffix _bonus.o, $(SRC) $(B_SRC))
 
 .PHONY: all clean fclean re bonus test sqr bmp err inv norm
 
@@ -69,10 +62,6 @@ fclean: clean
 
 re: fclean all
 
-bonus: fclean $(B_OBJ)
-	@echo "\n\033[0;32mCompiling bonus..."
-	$(CC) -o $(NAME) -L $(MLX) $(LXFLAGS) $(B_OBJ)
-	@echo "\033[0m"
 
 	./$(NAME)
 
