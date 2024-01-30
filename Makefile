@@ -4,13 +4,13 @@ CC = clang
 
 CFLAGS = -O3 -Wall -Wextra -Werror -g
 
-MLX = mlxopengl
+MLX = includes/mlxopengl
 
 LXFLAGS = -lmlx -framework OpenGL -framework AppKit
 
-HEADER = cub3d.h
+HEADER = includes/cub3d.h
 
-B_HEADER = cub3d_bonus.h
+LIBFT = includes/libft
 
 SRC = cub3d \
       tools \
@@ -23,63 +23,34 @@ SRC = cub3d \
 		screen/create_table \
 		hook/key \
 		hook/hook \
-	libft/ft_atoi \
-	libft/ft_memset \
-	libft/ft_strlen \
-	libft/ft_strspn \
-	libft/ft_split \
-	libft/ft_strjoin \
-	libft/ft_strchr \
-	libft/ft_memcpy \
-	libft/ft_strdup \
 
-
-
-FIL = $(addsuffix .c, $(addprefix files/, $(SRC)))
+FIL = $(addsuffix .c, $(addprefix src/, $(SRC)))
 
 OBJ = $(FIL:.c=.o)
 
 BIN = $(addsuffix .o, $(SRC))
 
-.PHONY: all clean fclean re bonus test sqr bmp err inv norm
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "\n\033[0;33mCompiling..."
-	$(CC) -o $(NAME) -L $(MLX) $(LXFLAGS) $(OBJ)
-	@echo "\033[0m"
+	@echo "\n🧙‍♂️ Wizard: Conjuring the components of the realm..."
+	@make -C $(MLX) 2> /dev/null
+	@make -C $(LIBFT) 2> /dev/null
+	@$(CC) -o $(NAME) -L $(MLX) $(LXFLAGS) $(OBJ) -L $(LIBFT) -lft 2> /dev/null
+	@echo "🏰 Castle: The stronghold is fortified, $(NAME) stands tall!"
 
 clean:
-	@echo "\033[0;31mCleaning..."
-	rm -rf $(OBJ) $(B_OBJ)
-	rm -f bitmap.bmp
-	@echo "\033[0m"
+	@echo "🌊 River Spirit: Cleansing the artifacts..."
+	@make clean -C $(MLX)
+	@make fclean -C $(LIBFT)
+	rm -rf $(OBJ)
+	@echo "🍃 Winds: The remnants have been swept away!"
 
 fclean: clean
-	@echo "\033[0;31mRemoving executable..."
+	@echo "🔥 Dragon's Breath: Incinerating the fortress..."
 	rm -f $(NAME)
-	@echo "\033[0m"
+	@echo "🌑 Eclipse: Nothing remains but shadows..."
 
 re: fclean all
-
-
-	./$(NAME)
-
-test: re
-	./$(NAME) maps/map.cub
-
-sqr: re
-	./$(NAME) maps/sqr.cub
-
-bmp: re
-	./$(NAME) maps/map.cub --save
-
-err: re
-	./$(NAME) maps/none
-
-inv: re
-	./$(NAME) maps/inv.cub
-
-norm:
-	norminette $(FIL) $(B_FIL) files/$(HEADER) bonus/$(B_HEADER)
